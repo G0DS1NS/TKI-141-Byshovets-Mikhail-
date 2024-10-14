@@ -57,9 +57,9 @@ int main(void) {
 
 double input(void) {
 
-	double number;
+	double number = 0;
 
-	if (scanf_s("%lf", &number) != 1 || ish(number) == false) {
+	if (scanf_s("%lf", &number) != 1 || !ish(number)) {
 
 		puts("Your input is uncorrected");
 
@@ -116,9 +116,6 @@ double get_summ(const double x, int n) {
 }
 
 bool ish(const double h){
-	if(h <= 0){
-           return false;
-	}
-        return true;
+	return h >= 0;
 }
 
