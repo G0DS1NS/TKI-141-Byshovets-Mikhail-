@@ -1,6 +1,13 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
+/*
+*@brief ish проверяет корректность введённого значения h
+*@param h параметр h
+*@return true, если h корректен и false, если некорректен
+*/
+bool ish(const double h);
 
 /*
 * @brief input принимает на вход значение double, вводимое пользователем
@@ -52,7 +59,7 @@ double input(void) {
 
 	double number;
 
-	if (scanf_s("%lf", &number) != 1) {
+	if (scanf_s("%lf", &number) != 1 || ish(number) == false) {
 
 		puts("Your input is uncorrected");
 
@@ -106,5 +113,12 @@ double get_summ(const double x, int n) {
 	double first_summ = 1 - pow(x, 2) / factorial(x);
 
 	return first_summ + pow(-1, n) * pow(x, 2 * n) / factorial(x);
+}
+
+bool ish(const double h){
+	if(h <= 0){
+           return false;
+	}
+        return true;
 }
 
