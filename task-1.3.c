@@ -46,7 +46,7 @@ int main() {
 
 double input(void) {
 
-  double number;
+  double number = 0;
 
   if (scanf_s("%lf", &number) != 1 || !isNumber(number)) {
 
