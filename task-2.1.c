@@ -84,25 +84,23 @@ bool isZero(const double number);
 bool isNumber(const double number);
 
 
-
+/*
+* @brief main принимает на вход два числа и выводит результат их суммы, разности, произведения или деления
+* @return возвращает результат действия, выполненного над двумя числами
+*/	
 int main() {
-
-	double first_number;
-	double second_number;
-
-	operation _operation;
 
 	puts("Enter the first number");
 
-	first_number = double_input();
+	double first_number = double_input();
 
 	puts("Enter the second number");
 
-	second_number = double_input();
+	double second_number = double_input();
 
 	puts("Enter the operation\n 1 - add\n 2 - difference\n 3 - multiplication\n 4 - division\n");
 
-	_operation = operation_input();
+	operation _operation = operation_input();
 
 	switch (_operation) {
 
