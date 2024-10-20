@@ -1,13 +1,7 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
-/*
-*@brief ish проверяет корректность введённого значения h
-*@param h параметр h
-*@return true, если h корректен и false, если некорректен
-*/
-bool ish(const double h);
 
 /*
 * @brief input принимает на вход значение double, вводимое пользователем
@@ -29,20 +23,25 @@ void get_answer(const double h);
 */
 double get_summ(const double x, int n);
 
-/*
-* @brief factorial считает факториал числа
-* @param x параметр x
-* @return возвращает значение факториала числа
+/**
+* @brief count_n_in_x_range
+* @param h параметр h
+* @return возвращает количество шагов h в диапазоне x
 */
-int factorial(const double x);
+int count_n_in_x_range(const double h);
+
+/**
+* @brief is_h проверяет значение h на правильность ввода
+* @param h параметр h
+* @return возращает true, если h больше 0 и false, если нет
+*/
+bool is_h(const double h);
 
 /*
 * @brief main принимает значение шага h и выводит аргумент функции, значение функции и сумму функионального ряда
 * @return возращает 0 в случае успеха
 */
 int main(void) {
-
-	double x = 0.1;
 
 	puts("Enter the h:");
 
@@ -57,9 +56,9 @@ int main(void) {
 
 double input(void) {
 
-	double number = 0;
+	double number;
 
-	if (scanf_s("%lf", &number) != 1 || !ish(number)) {
+	if (scanf_s("%lf", &number) != 1 || !is_h(number)) {
 
 		puts("Your input is uncorrected");
 
@@ -69,7 +68,7 @@ double input(void) {
 	return number;
 }
 
-int cnt_n_in_x_range(const double h) {
+int count_n_in_x_range(const double h) {
 
 	int cnt = 0;
 
@@ -83,7 +82,6 @@ int cnt_n_in_x_range(const double h) {
 
 void get_answer(const double h) {
 
-
 	int n = 1;
 
 	for (double x = 0.1; x <= 1; x += h) {
@@ -94,28 +92,27 @@ void get_answer(const double h) {
 	}
 }
 
-int factorial(const double x) {
-
-	int factorial_x = 1;
-
-	for (int i = 1; i <= x; i++) {
-
-		factorial_x *= i;
-	}
-
-	return factorial_x;
-}
 
 
 double get_summ(const double x, int n) {
 
+	double summ = 0;
 
-	double first_summ = 1 - pow(x, 2) / factorial(x);
+	double func = 1 - pow(x, 2) / 2;
 
-	return first_summ + pow(-1, n) * pow(x, 2 * n) / factorial(x);
+	summ += func;
+
+	for (int i = 0; i <= n; i++) {
+
+		func *= pow(x, 2) / (4 * pow(n, 2) - 2 * n);
+
+		summ += func;
+	}
+
+	return summ;
 }
 
-bool ish(const double h){
-	return h >= 0;
-}
+bool is_h(const double h) {
 
+	return h > 0;
+}
