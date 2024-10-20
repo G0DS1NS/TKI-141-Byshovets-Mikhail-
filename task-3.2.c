@@ -1,6 +1,7 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+
 /*
 * @brief get_summ считает значение функции, исходя из значений n и k
 * @param k параметр k
@@ -9,26 +10,33 @@
 */
 double get_summ(const int k, const int n);
 
+
 /*
 * @brief get_answer табулирует значение фукции
 * @param k параметр k
 * @param n параметр n
+* @param e параметр e
 */
-void get_answer(const int k, const int n);
+void get_answer(int k, const int n, double e);
 
 /*
 * @brief input принимает значение типа int
 * @return возвращает значение типа int, введённое пользователем
 */
-int input(void);
+int dinput(void);
 
-/*
-* @brief initialize заполняет массив факториалами разных чисел
-* @param arr передаваемый, уже инициализированный массив
-* @param n параметр n
-* @param k параметр k
+/**
+* @brief finput принимает на вход значения типа double
+* @return возвращает значение типа double, веденное пользователем
 */
-void initialize(int* arr, int n, int k);
+double finput(void);
+
+/**
+* @brief factorial считает значение факториала числа
+* @param x параметр x
+* @return возвращает значение факториала переданного значения
+*/
+int factorial(int x);
 
 /*
 * @brief main выводит значение протабулированной функции
@@ -40,19 +48,24 @@ int main(void) {
 	
 	puts("Enter the n:");
 
-	int n = input();
+	int n = dinput();
 
-	get_answer(k, n);
+	puts("Enter the e:");
+
+	double e = finput();
+
+	get_answer(k, n, e);
 
 	return 0;
 }
 
-double get_summ(const int k, const int n, int fact_k) {
+double get_summ(const int k, int fact_k) {
 
 	return pow(-1, k) * (1 / pow(fact_k, 2));
 }
 
-int input(void) {
+
+int dinput(void) {
 
 	int number;
 
@@ -66,27 +79,62 @@ int input(void) {
 	return number;
 }
 
-void get_answer(int k,const int n) {
+factorial(int x) {
 
-	int *factorial_k = NULL;
+	int k = 1;
 
-	factorial_k = malloc(sizeof(int) * n);
+	for (int i = 1; i <= k; i++) {
 
-	initialize(factorial_k, n, k);
-
-	for (k; k < n + 1; k++) {
-
-		printf("%f\n", get_summ(k, n, factorial_k[k - 1]));
+		k *= i;
 	}
 
+	return k;
 }
 
-void initialize(int* factorial_k, const int n, int k) {
+void get_answer(int k, const int n, double e) {
 
-	factorial_k[0] = k;
+	double summ = 0;
 
-	for (int i = 1; i < n + 1; i++) {
+	double summ_e = 0;
 
-		factorial_k[i] = factorial_k[i - 1] * (factorial_k[i - 1] + 1);
+	double summ_k = get_summ(k, factorial(k));
+
+	if (summ_k >= e) {
+
+		summ_e += summ_k;
 	}
+
+	summ += summ_k;
+
+	k += 1;
+
+	for (k; k <= n; k++) {
+
+		summ_k /= -pow(k, 2);
+
+		if (summ_k >= e) {
+
+			summ_e += summ_k;
+		}
+
+		summ += summ_k;
+
+	}
+
+	printf("%lf\n", summ);
+	printf("%lf\n", summ_e);
+}
+
+double finput(void) {
+
+	double number;
+
+	if (scanf_s("%lf", &number) != 1) {
+
+		puts("Your input is uncorrected");
+		
+		exit(EXIT_FAILURE);	
+	}
+
+	return number;
 }
