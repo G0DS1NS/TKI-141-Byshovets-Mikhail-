@@ -67,7 +67,7 @@ double get_summ(const int k, int fact_k) {
 
 int dinput(void) {
 
-	int number;
+	int number = 0;
 
 	if (scanf_s("%d", &number) != 1) {
 
@@ -79,7 +79,7 @@ int dinput(void) {
 	return number;
 }
 
-factorial(int x) {
+factorial(void) {
 
 	int k = 1;
 
@@ -97,7 +97,7 @@ void get_answer(int k, const int n, double e) {
 
 	double summ_e = 0;
 
-	double summ_k = get_summ(k, factorial(k));
+	double summ_k = get_summ(k, factorial());
 
 	if (summ_k >= e) {
 
@@ -127,7 +127,7 @@ void get_answer(int k, const int n, double e) {
 
 double finput(void) {
 
-	double number;
+	double number = 0;
 
 	if (scanf_s("%lf", &number) != 1) {
 
