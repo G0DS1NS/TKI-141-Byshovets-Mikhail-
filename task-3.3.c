@@ -13,7 +13,7 @@ double input(void);
 * @bried get_answer выводин протабулированную функцию
 * @param h параметр h, шаг
 */
-void get_answer(const double h);
+void get_answer(const double h, double x1, const double x2);
 
 /*
 * @brief get_summ считает сумму функционального ряда
@@ -21,7 +21,7 @@ void get_answer(const double h);
 * @param n параметр n
 * @return возвращает значение суммы фукнуционального ряда
 */
-double get_summ(const double x, int n);
+double get_summ(const double x, const int n);
 
 /**
 * @brief count_n_in_x_range
@@ -42,23 +42,37 @@ bool is_h(const double h);
 * @return возращает 0 в случае успеха
 */
 int main(void) {
+	pust("Enter the x1:");
+
+	double x1 = input();
+
+	puts("Enter the x2:");
+
+	double x2 = input();
 
 	puts("Enter the h:");
 
 	double h = input();
 
-	printf("x\t\tcos(x)\t\tS\n");
+	if(is_h(h){
 
-	get_answer(h);
+		printf("x\t\tcos(x)\t\tS\n");
+		
+		get_answer(h);
 
-	return 0;
+	        return 0;
+
+        }
+
+        puts("h is incorrected")
+	return 1;
 }
 
 double input(void) {
 
-	double number;
+	double number = 0;
 
-	if (scanf_s("%lf", &number) != 1 || !is_h(number)) {
+	if (scanf_s("%lf", &number) != 1) {
 
 		puts("Your input is uncorrected");
 
@@ -80,13 +94,13 @@ int count_n_in_x_range(const double h) {
 	return cnt;
 }
 
-void get_answer(const double h) {
+void get_answer(const double h, double x1; const double x2) {
 
 	int n = 1;
 
-	for (double x = 0.1; x <= 1; x += h) {
+	for (x1; x1 <= x2; x1 += h) {
 
-		printf("%f\t%f\t%.4f\n", x, cos(x), get_summ(x, n));
+		printf("%f\t%f\t%.4f\n", x1, cos(x1), get_summ(x1, n));
 
 		n += 1;
 	}
@@ -94,7 +108,7 @@ void get_answer(const double h) {
 
 
 
-double get_summ(const double x, int n) {
+double get_summ(const double x, const int n) {
 
 	double summ = 0;
 
