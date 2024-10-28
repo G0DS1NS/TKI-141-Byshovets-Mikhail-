@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
@@ -16,8 +16,6 @@ typedef enum {
 
 } operation;
 
-#define OPERATION_MIN add;
-#define OPERATION_MAX div;
 
 /*
 * @brief double_input принимает на вход значения типа double
@@ -76,19 +74,13 @@ double division(const double first_number, const double second_number);
 */
 bool isZero(const double number);
 
-/*
-* @brief isNumber проверяет входит ли число введённое пользователем в диапазон от 1 до 4
-* @param number число
-* @return возвращает true, если число входит в диапазон, и false, если не входит
-*/
-bool isNumber(const double number);
 
 
 /*
 * @brief main принимает на вход два числа и выводит результат их суммы, разности, произведения или деления
 * @return возвращает результат действия, выполненного над двумя числами
 */	
-int main() {
+int main(void) {
 
 	puts("Enter the first number");
 
@@ -98,7 +90,7 @@ int main() {
 
 	double second_number = double_input();
 
-	puts("Enter the operation\n 1 - add\n 2 - difference\n 3 - multiplication\n 4 - division\n");
+	puts("Enter the operation\n 1 - addition\n 2 - difference\n 3 - multiplication\n 4 - division\n");
 
 	operation _operation = operation_input();
 
@@ -145,7 +137,7 @@ int int_input(void) {
 
 	int number;
 
-	if (scanf_s("%d", &number) != 1 || !isNumber(number)) {
+	if (scanf_s("%d", &number) != 1) {
 
 		exit(EXIT_FAILURE);
 	}
@@ -194,7 +186,3 @@ double division(const double first_number, const double second_number) {
 	return first_number / second_number;
 }
 
-bool isNumber(const double number) {
-
-	return number < 4 || number > 1;
-}
