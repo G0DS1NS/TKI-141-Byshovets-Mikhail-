@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
+#include <float.h>
 
 /*
 * @brief input принимает на вход значение double, вводимое пользователем
@@ -11,6 +12,8 @@ double input(void);
 
 /*
 * @bried get_answer выводин протабулированную функцию
+* @param x1 начало диапазона
+* param x2 конец диапазона
 * @param h параметр h, шаг
 */
 void get_answer(const double h, double x1, const double x2);
@@ -98,7 +101,7 @@ void get_answer(const double h, double x1; const double x2) {
 
 	int n = 1;
 
-	for (x1; x1 <= x2; x1 += h) {
+	for (x1; x1 <= x2 + DBL_EPSILON; x1 += h) {
 
 		printf("%f\t%f\t%.4f\n", x1, cos(x1), get_summ(x1, n));
 
