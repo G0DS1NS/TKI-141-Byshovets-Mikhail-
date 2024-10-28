@@ -45,7 +45,7 @@ bool is_h(const double h);
 * @return возращает 0 в случае успеха
 */
 int main(void) {
-	pust("Enter the x1:");
+	puts("Enter the x1:");
 
 	double x1 = input();
 
@@ -57,18 +57,27 @@ int main(void) {
 
 	double h = input();
 
-	if(is_h(h){
+	if (!is_h(h)) {
 
-		printf("x\t\tcos(x)\t\tS\n");
-		
-		get_answer(h);
+		puts("h is not positive");
 
-	        return 0;
+		return 1;
+	}
 
-        }
+	int n = 1;
 
-        puts("h is incorrected")
-	return 1;
+
+	printf("x\t\tcos(x)\t\tS\n");
+
+
+	for (x1; x1 <= x2 + DBL_EPSILON; x1 += h) {
+
+		printf("%f\t%f\t%.4f\n", x1, cos(x1), get_summ(x1, n));
+
+		n += 1;
+	}
+
+	return 0;
 }
 
 double input(void) {
@@ -97,19 +106,6 @@ int count_n_in_x_range(const double h) {
 	return cnt;
 }
 
-void get_answer(const double h, double x1; const double x2) {
-
-	int n = 1;
-
-	for (x1; x1 <= x2 + DBL_EPSILON; x1 += h) {
-
-		printf("%f\t%f\t%.4f\n", x1, cos(x1), get_summ(x1, n));
-
-		n += 1;
-	}
-}
-
-
 
 double get_summ(const double x, const int n) {
 
@@ -131,5 +127,5 @@ double get_summ(const double x, const int n) {
 
 bool is_h(const double h) {
 
-	return h > 0;
+	return h > DBL_EPSILON;
 }
