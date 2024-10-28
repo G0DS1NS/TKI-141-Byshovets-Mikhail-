@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <float.h>
 
 
 /**
@@ -31,7 +32,7 @@ int main(void)
 
 	double h = input();
 
-	for (x1; x1 <= x2; x1 += h)
+	for (x1; x1 <= x2 + DBL_EPSILON; x1 += h)
 	{
 
 		printf(" y = %lf\n", get_y(x1));
