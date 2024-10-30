@@ -1,140 +1,162 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
-/*
-* @brief get_summ считает значение функции, исходя из значений n и k
-* @param k параметр k
-* @param n параметр n
-* @return возвращает значение фукции
-*/
-double get_summ(const int k, const int n);
+#include <float.h>
+#include <stdbool.h>
 
 
-/*
-* @brief get_answer табулирует значение фукции
-* @param k параметр k
-* @param n параметр n
-* @param e параметр e
-*/
-void get_answer(int k, const int n, double e);
-
-/*
-* @brief input принимает значение типа int
-* @return возвращает значение типа int, введённое пользователем
+/**
+* @brief dinput считывает данные типа int, вводимые пользователем
+* @return возвращает значение, введённое пользователем
 */
 int dinput(void);
 
+
 /**
-* @brief finput принимает на вход значения типа double
-* @return возвращает значение типа double, веденное пользователем
+* @brief finput считывает значения типа double, вводимые пользователем
+* @return возвращает значение, введённое пользователем
 */
 double finput(void);
 
 /**
-* @brief factorial считает значение факториала числа
-* @param x параметр x
-* @return возвращает значение факториала переданного значения
+* @brief get_next_element считает следующий элемент последовательности
+* @param last_element последний элемент последовательности
+* @return возвращает следующий элемент последовательности
 */
-int factorial(int x);
+double get_next_element(const double last_element, const int k);
 
-/*
-* @brief main выводит значение протабулированной функции
-* @return возращает 0 в слухае успеха
+
+/**
+* @brief get_summ считает сумму для первых n элементов
+* @param n параметр n
+* @return возвращает сумму первых n элементов
+*/
+double get_summ(const int n);
+
+/**
+* @brief get_summ_e считает сумму элементов не меньше e
+* @param n параметр n
+* @param e параметр e
+* @return возвращает сумму элементов не меньших e
+*/
+double get_summ_e(const int n, const double e);
+
+/**
+* @brief is_positive проверяет положителен ли n
+* @param n параметр n
+* @reеurn возвращает true, если n положителен и false, если равен или меньше 0
+*/
+bool is_positive(const int n);
+
+/**
+* @brief main выводит значения сумм
+* @return возвращает 0 в случае успеха
 */
 int main(void) {
 
-	int k = 1;
-	
 	puts("Enter the n:");
 
 	int n = dinput();
 
-	puts("Enter the e:");
+	if (!is_positive(n))
+	{
+		puts("n in not positive");
+
+		exit(EXIT_FAILURE);
+	}
+
+	puts("Enter the e");
 
 	double e = finput();
 
-	get_answer(k, n, e);
+	printf("%lf\n %lf", get_summ(n), get_summ_e(n, e));
 
 	return 0;
 }
 
-double get_summ(const int k, int fact_k) {
+double get_summ(const int n)
+{
 
-	return pow(-1, k) * (1 / pow(fact_k, 2));
-}
+	double summ = -1;
 
+	double last_element = -1;
 
-int dinput(void) {
+	for (int k = 2; k <= n; k++)
+	{
 
-	int number = 0;
+		summ += get_next_element(last_element, k);
 
-	if (scanf_s("%d", &number) != 1) {
-
-		puts("Your input is incorrect");
-
-		exit(EXIT_FAILURE);	
+		last_element = get_next_element(last_element, k);
 	}
-
-	return number;
+	
+	return summ;
 }
 
-factorial(void) {
+double get_next_element(const double last_element, const int k)
+{
 
-	int k = 1;
-
-	for (int i = 1; i <= k; i++) {
-
-		k *= i;
-	}
-
-	return k;
+	return last_element / -pow(k, 2);
 }
 
-void get_answer(int k, const int n, double e) {
-
-	double summ = 0;
+double get_summ_e(const int n, const double e)
+{
 
 	double summ_e = 0;
 
-	double summ_k = get_summ(k, factorial());
+	double last_element = -1;
 
-	if (summ_k >= e) {
-
-		summ_e += summ_k;
+	if (last_element >= e + DBL_EPSILON)
+	{
+		summ_e += last_element;
 	}
 
-	summ += summ_k;
+	for (int k = 2; k <= n; k++) {
 
-	k += 1;
+		last_element = get_next_element(last_element, k);
 
-	for (k; k <= n; k++) {
+		if (last_element >= e + DBL_EPSILON)
+		{
 
-		summ_k /= -pow(k, 2);
-
-		if (summ_k >= e) {
-
-			summ_e += summ_k;
+			summ_e += last_element;
 		}
-
-		summ += summ_k;
-
 	}
 
-	printf("%lf\n", summ);
-	printf("%lf\n", summ_e);
+	return summ_e;
 }
 
-double finput(void) {
+int dinput(void)
+{
 
-	double number = 0;
+	int number = 0;
 
-	if (scanf_s("%lf", &number) != 1) {
+	if (scanf_s("%d", &number) != 1)
+	{
 
 		puts("Your input is uncorrected");
-		
-		exit(EXIT_FAILURE);	
+
+		exit(EXIT_FAILURE);
 	}
 
 	return number;
+}
+
+double finput(void)
+{
+
+	double number = 0;
+
+	if (scanf_s("%lf", &number) != 1)
+	{
+
+		puts("Your input is uncorrected");
+
+		exit(EXIT_FAILURE);
+	}
+
+	return number;
+}
+
+bool is_positive(const int n)
+{
+	return n > 0;
 }
