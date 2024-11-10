@@ -31,26 +31,40 @@ bool isNumber(const double number);
 * @param m масса ложки
 * @return возвращает 0 в случае успеха
 */
-int main() {
+int main(void) {
 
   puts("Введите значение Q:");
 
   double Q = input();
 
+  if(!isNumber(Q)){
+
+    puts("Parameter is not positive");
+    return 1;
+  }
+
   puts("Введите значение m:");
 
   double m = input();
+    if(!isNumber(m)){
+
+      puts("Parameter is not posotive");
+
+      return 1;
+    }
 
   printf("t = %f\n", get_t(Q, m));
+
+  return 0;
 }
 
 double input(void) {
 
   double number = 0;
 
-  if (scanf_s("%lf", &number) != 1 || !isNumber(number)) {
+  if (scanf_s("%lf", &number) != 1) {
 
-    puts("Значение не может быть меньше нуля");
+    puts("Your input is uncorrected");
 
     exit(EXIT_FAILURE);
   }
