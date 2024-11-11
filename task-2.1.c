@@ -2,10 +2,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
-
+#include <float.h>
 
 /**
 * @brief operation перечисляет действия, которые можно воспроизвести над числами
+* @param add сложение
+* @param difference разность
+* @param multy умножение
+* @param divis деление
 */
 typedef enum {
 
@@ -28,12 +32,6 @@ double double_input(void);
 * @return возвращает значение введённое пользователем
 */
 int int_input(void);
-
-/*
-* @brief operation_input принимает на вход значение типа int
-* @return возвращает значение типа operation
-*/
-operation operation_input(void);
 
 /*
 * @brief plus складывает два значения
@@ -79,7 +77,7 @@ bool isZero(const double number);
 /*
 * @brief main принимает на вход два числа и выводит результат их суммы, разности, произведения или деления
 * @return возвращает результат действия, выполненного над двумя числами
-*/	
+*/
 int main(void) {
 
 	puts("Enter the first number");
@@ -92,7 +90,7 @@ int main(void) {
 
 	puts("Enter the operation\n 1 - addition\n 2 - difference\n 3 - multiplication\n 4 - division\n");
 
-	operation _operation = operation_input();
+	operation _operation = (operation)int_input();
 
 	switch (_operation) {
 
@@ -114,6 +112,8 @@ int main(void) {
 
 	default:
 
+		puts("Your input is uncorrected");
+
 		exit(EXIT_FAILURE);
 
 	}
@@ -123,9 +123,11 @@ int main(void) {
 
 double double_input(void) {
 
-	double number;
+	double number = 0;
 
 	if (scanf_s("%lf", &number) != 1) {
+
+		puts("Your input is uncorrected");
 
 		exit(EXIT_FAILURE);
 	}
@@ -135,9 +137,11 @@ double double_input(void) {
 
 int int_input(void) {
 
-	int number;
+	int number = 0;
 
 	if (scanf_s("%d", &number) != 1) {
+
+		puts("Your input is uncorrected");
 
 		exit(EXIT_FAILURE);
 	}
@@ -145,12 +149,6 @@ int int_input(void) {
 	return number;
 }
 
-operation operation_input(void) {
-
-	operation value = int_input();
-
-	return value;
-}
 
 double plus(const double first_number, const double second_number) {
 
@@ -171,7 +169,7 @@ double multiplication(const double first_number, const double second_number) {
 
 bool isZero(const double number) {
 
-	return number == 0;
+	return number == 0 + DBL_EPSILON;
 }
 
 double division(const double first_number, const double second_number) {
@@ -185,4 +183,3 @@ double division(const double first_number, const double second_number) {
 
 	return first_number / second_number;
 }
-
