@@ -92,5 +92,5 @@ double finput(void)
 
 bool is_positive(const double h)
 {
-	return h > 0;
+	return h > DBL_EPSILON;
 }
