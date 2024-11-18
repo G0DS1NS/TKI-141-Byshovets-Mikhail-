@@ -88,8 +88,6 @@ int main(void) {
 
 	double second_number = double_input();
 
-	puts("Enter the operation\n 1 - addition\n 2 - difference\n 3 - multiplication\n 4 - division\n");
-
 	operation _operation = (operation)int_input();
 
 	switch (_operation) {
