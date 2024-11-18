@@ -38,6 +38,8 @@ int main(void)
 		printf(" y = %lf\n", get_y(x1));
 	}
 
+	return 0;
+
 }
 
 double input(void) {
