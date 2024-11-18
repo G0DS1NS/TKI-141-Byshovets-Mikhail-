@@ -96,8 +96,6 @@ int main(void)
 		return 1;
 	}
 
-	puts("Enter the your choose of initialize of list:\n1 - manually\n2 - random:\n ");
-
 	choose choose_initialize = (choose)input();
 
 	switch (choose_initialize) {
