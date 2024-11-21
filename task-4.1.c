@@ -8,6 +8,12 @@
 #define RAND_MAX 1000 // Максимальное значение случайных чисел
 
 /**
+* @brief sinput принимает значение, введённое пользователем
+* @return возвращает значение введённое пользователем
+*/
+size_t sinput(void);
+
+/**
 * @brief choose перечисляет констаты для того, чтобы пользователь выбрал, как заполнять список
 * @param manually вручную
 * @param random случайные числа
@@ -77,7 +83,7 @@ int main(void)
 
 	puts("Enter the n:");
 
-	int n = input();
+	size_t n = input();
 
 	if (!is_positive(n)) {
 
@@ -86,9 +92,7 @@ int main(void)
 		return 1;
 	}
 
-	int *list_of_number = NULL;
-
-	list_of_number = (int*)malloc(sizeof(int) * n);
+	int *list_of_number = (int*)malloc(sizeof(int) * n);
 
 	if(list_of_number == NULL)
 	{
@@ -107,7 +111,7 @@ int main(void)
 		initialize_rand(list_of_number, n);
 		break;
 	default:
-		puts("Please enter 1 or 2 for choose");
+		puts("Error");
 		return 1;
 	}
 
@@ -210,4 +214,17 @@ int input(void)
 bool is_positive(const int n) {
 
 	return n > 0;
+}
+
+size_t sinput(void)
+{
+    size_t number = 0;
+    if (scanf_s("%zu", &number) != 1)
+    {
+        puts("Your input is uncorrected");
+        exit(EXIT_FAILURE);
+
+    }
+
+    return number;
 }
