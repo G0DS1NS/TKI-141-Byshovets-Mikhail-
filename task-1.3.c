@@ -19,11 +19,11 @@ double input(void);
 double get_t(const double Q, const double m);
 
 /*
-* @brief is Number проверяет меньше число нуля или нет
+* @brief is_number проверяет меньше число нуля или нет
 * @param number число
 * @return возвращает true, если больше 0 и fasle, если меньше или равен 0
 */
-bool isNumber(const double number);
+bool is_number(const double number);
 
 /*
 * @brief функция main выводит значение t, исходя из значений Q и m
@@ -37,16 +37,10 @@ int main(void) {
 
   double Q = input();
 
-  if(!isNumber(Q)){
-
-    puts("Parameter is not positive");
-    return 1;
-  }
-
   puts("Введите значение m:");
 
   double m = input();
-    if(!isNumber(m)){
+    if(!is_number(m) || !is_number(Q)){
 
       puts("Parameter is not posotive");
 
