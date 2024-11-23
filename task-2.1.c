@@ -70,7 +70,7 @@ double division(const double first_number, const double second_number);
 * @param number число
 * @return возвращает true, если число является нулём и false, если не является
 */
-bool isZero(const double number);
+bool is_zero(const double number);
 
 
 
@@ -112,7 +112,7 @@ int main(void) {
 
 		puts("Your input is uncorrected");
 
-		exit(EXIT_FAILURE);
+		return 1;
 
 	}
 
@@ -165,14 +165,14 @@ double multiplication(const double first_number, const double second_number) {
 
 }
 
-bool isZero(const double number) {
+bool is_zero(const double number) {
 
-	return number == 0 + DBL_EPSILON;
+	return number > 0 + DBL_EPSILON || number < 0 + DBL_EPSILON;
 }
 
 double division(const double first_number, const double second_number) {
 
-	if (isZero(second_number)) {
+	if (!is_Zero(second_number)) {
 
 		puts("Division by zero is not possible");
 		exit(EXIT_FAILURE);
