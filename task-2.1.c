@@ -167,12 +167,12 @@ double multiplication(const double first_number, const double second_number) {
 
 bool is_zero(const double number) {
 
-	return number > 0 + DBL_EPSILON || number < 0 + DBL_EPSILON;
+	return fabs(number) < DBL_EPSILON;
 }
 
 double division(const double first_number, const double second_number) {
 
-	if (!is_Zero(second_number)) {
+	if (is_zero(second_number)) {
 
 		puts("Division by zero is not possible");
 		exit(EXIT_FAILURE);
