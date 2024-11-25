@@ -3,6 +3,13 @@
 #include <math.h>
 #include <float.h>
 #include <stdbool.h>
+
+/**
+* @brief is_zero проверяет, является ли число нулём
+* @param number число
+* @return возвращает true, если число является нулём и false, если не является нулём
+*/
+bool is_zero(const double number);
 /*
 * @brief input принимает на вход значение double, вводимое пользователем
 * @return возвращает значение, введеное пользователем
@@ -78,6 +85,12 @@ double input(void) {
 
 double first_operation(const double x) {
 
+	if (is_zero(x))
+	{
+		puts("Your inpur is uncorrected");
+		exit(EXIT_FAILURE);
+	}
+
 	return 3.14 * pow(x, 2) - 7 / pow(x, 2);
 }
 
@@ -101,5 +114,10 @@ double get_y(const double x, const double a) {
 
 bool is_define(const double x) {
 
-	return x < 1.34 + DBL_EPSILON && x >= 1.4 + DBL_EPSILON;
+	return x < 1.34 + DBL_EPSILON || x >= 1.4 + DBL_EPSILON;
+}
+
+bool is_zero(const double number)
+{
+	return fabs(number) < DBL_EPSILON;
 }
