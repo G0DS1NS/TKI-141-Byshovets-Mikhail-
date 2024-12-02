@@ -191,9 +191,9 @@ int count_of_two_char(const int* list_of_number, const size_t n)
 
 	for (size_t i = 0; i < n; i++) {
 
-		double element = (double)list_of_number[i];
+		int element = list_of_number[i];
 
-		if (element / 100 > 0.1 + DBL_EPSILON && element / 100 < 1 + DBL_EPSILON) {
+		if (fabs(element) > 9 && fabs(element) < 100) {
 
 			count += 1;
 		}
