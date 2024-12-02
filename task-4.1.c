@@ -83,13 +83,6 @@ void initialize_rand(int* list_of_number,const size_t n, const int max, const in
 int input(void);
 
 /**
-* @brief is_positive проверяет больше ли число 0 или нет
-* @param n параметр n
-* @retutn возвращает true, если число больше 0 и false, если число меньше или равно 0
-*/
-bool is_positive(const int n);
-
-/**
 * @brief positive_input считывает число, введённое пользователем и проверяет положительно ли оно
 * @return возвращает число, введённое пользователем
 */
@@ -129,9 +122,7 @@ int main(void)
 	const size_t n = positive_input();
 
 	int* list_of_number = create_list(n);
-
-	puts("Enter the your choose of initialize of list:\n1 - manually\n2 - random:\n ");
-
+	
 	choose choose_initialize = (choose)input();
 
 	switch (choose_initialize) {
@@ -152,7 +143,7 @@ int main(void)
 		initialize_rand(list_of_number, max, min);
 		break;
 	default:
-		puts("Please enter 1 or 2 for choose");
+		
 		return 1;
 	}
 
@@ -220,14 +211,12 @@ void replace_list(int* list_of_numbers, const size_t n)
 		exit(EXIT_FAILURE);
 	}
 
-	if (find_unpositive_element(list_of_numbers, n) == NULL)
-	{
-		puts("Unpositive element was not found");
-
-		return;
-	}
-
 	size_t index_unpositive_element = find_unpositive_element(list_of_numbers, n);
+
+	if(index_unpositive_element == NULL){
+		puts("Error");
+		exit(EXIT_FAILURE);
+	}
 
 	int replace_element = 0;
 
@@ -314,11 +303,6 @@ int input_rand_min(void)
 	return number;
 }
 
-bool is_positive(const int n)
-{
-	return n > 0;
-}
-
 size_t positive_input(void)
 {
 	int number = 0;
@@ -337,19 +321,19 @@ int* create_list(const int n)
 {
 	int* list_of_number = (int*)malloc(sizeof(int) * n);
 
-	if (check_list_null(list_of_number))
+	check_list_null(list_of_number);
+
+	return list_of_number;
+}
+
+void check_list_null(const int* list_numbers)
+{
+	if (list_numbers == NULL)
 	{
 		puts("Error");
 
 		exit(EXIT_FAILURE);
 	}
-
-	return list_of_number;
-}
-
-bool check_list_null(const int* list_numbers)
-{
-	return list_numbers == NULL;
 }
 
 size_t find_unpositive_element(const int* list_of_numbers, const size_t n)
