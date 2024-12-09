@@ -104,9 +104,12 @@ double get_summ_e(const double e)
 
 	double last_element = -1;
 
-	while(last element > e + DBL_EPSILON)
+	int k = 1;
+
+	while(last element >= e + DBL_EPSILON)
 	{
 		summ_e += last_element;
+		k += 1;
 		last_element = get_next_element(last_element, k);
 	}
 
