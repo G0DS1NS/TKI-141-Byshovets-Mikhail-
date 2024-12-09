@@ -35,11 +35,10 @@ double get_summ(const int n);
 
 /**
 * @brief get_summ_e считает сумму элементов не меньше e
-* @param n параметр n
 * @param e параметр e
 * @return возвращает сумму элементов не меньших e
 */
-double get_summ_e(const int n, const double e);
+double get_summ_e(const double e);
 
 /**
 * @brief is_positive проверяет положителен ли n
@@ -98,27 +97,17 @@ double get_next_element(const double last_element, const int k)
 	return last_element / -pow(k, 2);
 }
 
-double get_summ_e(const int n, const double e)
+double get_summ_e(const double e)
 {
 
 	double summ_e = 0;
 
 	double last_element = -1;
 
-	if (last_element >= e + DBL_EPSILON)
+	while(last element > e + DBL_EPSILON)
 	{
 		summ_e += last_element;
-	}
-
-	for (int k = 2; k <= n; k++) {
-
 		last_element = get_next_element(last_element, k);
-
-		if (last_element >= e + DBL_EPSILON)
-		{
-
-			summ_e += last_element;
-		}
 	}
 
 	return summ_e;
