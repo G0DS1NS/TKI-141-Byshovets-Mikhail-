@@ -49,6 +49,13 @@ double get_summ_e(const int n, const double e);
 bool is_positive(const int n);
 
 /**
+* @brief is_positive проверяет положителен ли e
+* @param e параметр e
+* @reеurn возвращает true, если e положителен и false, если равен или меньше 0
+*/
+bool is_positive_d(const double e);
+
+/**
 * @brief main выводит значения сумм
 * @return возвращает 0 в случае успеха
 */
@@ -57,13 +64,6 @@ int main(void) {
 	puts("Enter the n:");
 
 	int n = dinput();
-
-	if (!is_positive(n))
-	{
-		puts("n in not positive");
-
-		exit(EXIT_FAILURE);
-	}
 
 	puts("Enter the e");
 
@@ -129,7 +129,7 @@ int dinput(void)
 
 	int number = 0;
 
-	if (scanf_s("%d", &number) != 1)
+	if (scanf_s("%d", &number) != 1 || !is_positive(number))
 	{
 
 		puts("Your input is uncorrected");
@@ -145,7 +145,7 @@ double finput(void)
 
 	double number = 0;
 
-	if (scanf_s("%lf", &number) != 1)
+	if (scanf_s("%lf", &number) != 1 || !is_positive_d(number))
 	{
 
 		puts("Your input is uncorrected");
@@ -159,4 +159,9 @@ double finput(void)
 bool is_positive(const int n)
 {
 	return n > 0;
+}
+
+bool is_positive_d(const double e)
+{
+	return e > DBL_EPSILON;
 }
