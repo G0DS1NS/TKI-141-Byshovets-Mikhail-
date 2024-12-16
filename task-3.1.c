@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <float.h>
+#include <stdbool.h>
 
 
 /**
@@ -11,11 +12,15 @@
 */
 double get_y(const double x);
 
+
+
 /**
 * @brief input Считывает вещественное число
 * @return Возвращает вещественное число
 */
 double input(void);
+
+bool is_positive(const int h);
 
 int main(void)
 {
@@ -46,7 +51,7 @@ double input(void) {
 
 	double number = 0;
 
-	if (scanf_s("%lf", &number) != 1)
+	if (scanf_s("%lf", &number) != 1 || !is_positive(number))
 	{
 		puts("Ваш ввод некорректен");
 
@@ -60,4 +65,9 @@ double get_y(const double x)
 {
 
 	return sin(log(x)) - cos(log(x)) + 2 * log(x);
+}
+
+bool is_positive(const int h)
+{
+	return h > 0;
 }
