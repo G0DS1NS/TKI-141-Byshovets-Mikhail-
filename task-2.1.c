@@ -88,9 +88,9 @@ int main(void) {
 
 	double second_number = double_input();
 
-	operation _operation = (operation)int_input();
+	operation oper = (operation)int_input();
 
-	switch (_operation) {
+	switch (oper) {
 
 	case add:
 		printf("%f", plus(first_number, second_number));
