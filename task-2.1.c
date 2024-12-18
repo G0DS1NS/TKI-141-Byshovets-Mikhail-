@@ -66,7 +66,7 @@ double multiplication(const double first_number, const double second_number);
 double division(const double first_number, const double second_number);
 
 /*
-* @brief isZero проверяет является ли число нулём
+* @brief is_zero проверяет является ли число нулём
 * @param number число
 * @return возвращает true, если число является нулём и false, если не является
 */
@@ -93,19 +93,19 @@ int main(void) {
 	switch (oper) {
 
 	case add:
-		printf("%f", plus(first_number, second_number));
+		printf("a = %f\n b = %f\n a + b: %f", first_number, second_number, plus(first_number, second_number));
 		break;
 
 	case difference:
-		printf("%f", diff(first_number, second_number));
+		printf("a = %f\n b = %f\n a - b: %f", first_number, second_number, diff(first_number, second_number));
 		break;
 
 	case multy:
-		printf("%f", multiplication(first_number, second_number));
+		printf("a = %f\n b = %f\n a * b: %f", first_number, second_number, multiplication(first_number, second_number));
 		break;
 
 	case divis:
-		printf("%f", division(first_number, second_number));
+		printf("a = %f\n b = %f\n a / b: %f", first_number, second_number, division(first_number, second_number));
 		break;
 
 	default:
