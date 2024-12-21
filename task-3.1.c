@@ -20,6 +20,11 @@ double get_y(const double x);
 */
 double input(void);
 
+/**
+* @brief is_positive проверяет число на положительность
+* @param h параметр h
+* @return возвращает true, если h больше 0 и false, если h меньше или равен 0
+*/
 bool is_positive(const int h);
 
 int main(void)
@@ -37,10 +42,12 @@ int main(void)
 
 	double h = input();
 
-	for (x1; x1 <= x2 + DBL_EPSILON; x1 += h)
+	double start = x1;
+
+	for (start; start <= x2 + DBL_EPSILON; start += h)
 	{
 
-		printf(" y = %lf\n", get_y(x1));
+		printf("x = %lf y = %lf\n", start, get_y(start));
 	}
 
 	return 0;
