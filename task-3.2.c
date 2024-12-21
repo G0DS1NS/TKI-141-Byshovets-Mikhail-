@@ -80,12 +80,12 @@ double get_summ(const int n)
 
 	double last_element = -1;
 
-	for (int k = 2; k <= n; k++)
+	for (int k = 1; k <= n; k++)
 	{
 
-		summ += get_next_element(last_element, k);
-
 		last_element = get_next_element(last_element, k);
+
+		summ += last_element;
 	}
 	
 	return summ;
@@ -109,8 +109,8 @@ double get_summ_e(const double e)
 	while(last element >= e + DBL_EPSILON)
 	{
 		summ_e += last_element;
-		k += 1;
 		last_element = get_next_element(last_element, k);
+		k += 1;
 	}
 
 	return summ_e;
